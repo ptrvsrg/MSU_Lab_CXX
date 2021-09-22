@@ -2,5 +2,7 @@
 Ссылку на материалы прикладываю:
 
 Учебно-методические пособия по Си: https://cmp.phys.msu.ru/study/programming/c-book
+
 Учебно-методические пособия по С++: https://cmp.phys.msu.ru/study/programming/cpp-book
+
 P.S. не судите строго за говнокод, со временем всё подправлю(нет)
