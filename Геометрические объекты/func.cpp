@@ -1,26 +1,26 @@
 #include "geom.h"
 
-//Открытии файла для чтения
+//ГЋГІГЄГ°Г»ГІГЁГЁ ГґГ Г©Г«Г  Г¤Г«Гї Г·ГІГҐГ­ГЁГї
 FILE* open_file()
 {
 	setlocale(LC_ALL, "");
-	char file_name[100] = "1.txt";
+	char file_name[] = "1.txt";
 
-	/*printf("Введите название файла: ");
+	/*printf("Г‚ГўГҐГ¤ГЁГІГҐ Г­Г Г§ГўГ Г­ГЁГҐ ГґГ Г©Г«Г : ");
 	scanf("%s", file_name);*/
 
 	FILE* file = fopen(file_name, "r");
 
 	if (!file)
 	{
-		printf("Ошибка при открытии файла %s", file_name);
+		printf("ГЋГёГЁГЎГЄГ  ГЇГ°ГЁ Г®ГІГЄГ°Г»ГІГЁГЁ ГґГ Г©Г«Г  %s", file_name);
 		exit(2);
 	}
 
 	return file;
 }
 
-//Коэффициенты в уравнении прямой
+//ГЉГ®ГЅГґГґГЁГ¶ГЁГҐГ­ГІГ» Гў ГіГ°Г ГўГ­ГҐГ­ГЁГЁ ГЇГ°ГїГ¬Г®Г©
 koefficient koef(otrezok AB)
 {
 	koefficient koef;
@@ -30,7 +30,7 @@ koefficient koef(otrezok AB)
 	return koef;
 }
 
-//Создание поля
+//Г‘Г®Г§Г¤Г Г­ГЁГҐ ГЇГ®Г«Гї
 void input()
 {
 	for (int i = 0; i < Y; i++)
@@ -42,14 +42,14 @@ void input()
 	}
 }
 
-//Построение точки
+//ГЏГ®Г±ГІГ°Г®ГҐГ­ГЁГҐ ГІГ®Г·ГЄГЁ
 void tchk_pst(tochka O)
 {
 	if (0 <= O.x < X && 0 <= O.y < Y)
 		POLE[O.y][O.x] = SYM;
 }
 
-//Построение отрезка
+//ГЏГ®Г±ГІГ°Г®ГҐГ­ГЁГҐ Г®ГІГ°ГҐГ§ГЄГ 
 void otr_pst(otrezok A1A2)
 {
 	int x = 0, y = 0;
@@ -78,7 +78,7 @@ void otr_pst(otrezok A1A2)
 	}
 }
 
-//Построение круга
+//ГЏГ®Г±ГІГ°Г®ГҐГ­ГЁГҐ ГЄГ°ГіГЈГ 
 void kr_pst(krug okr)
 {
 	int xn = round(okr.O.x - sqrt(pow(okr.radius, 2) - pow(round(okr.O.y - okr.radius / sqrt(2)) - okr.O.y, 2)));
@@ -179,13 +179,13 @@ void kr_pst(krug okr)
 	}
 }
 
-//Построение прямоугольника
+//ГЏГ®Г±ГІГ°Г®ГҐГ­ГЁГҐ ГЇГ°ГїГ¬Г®ГіГЈГ®Г«ГјГ­ГЁГЄГ 
 void pr_pst(pryamougolnik pr)
 {
 	setlocale(LC_ALL, "");
 	if (pr.A.x > pr.B.x || pr.A.y > pr.B.y)
 	{
-		printf("Введите правилльно параметры прямогульника: x(A) < x(B) и y(A) < y(B)\n");
+		printf("Г‚ГўГҐГ¤ГЁГІГҐ ГЇГ°Г ГўГЁГ«Г«ГјГ­Г® ГЇГ Г°Г Г¬ГҐГІГ°Г» ГЇГ°ГїГ¬Г®ГЈГіГ«ГјГ­ГЁГЄГ : x(A) < x(B) ГЁ y(A) < y(B)\n");
 		exit(1);
 	}
 
@@ -195,7 +195,7 @@ void pr_pst(pryamougolnik pr)
 	otr_pst({ pr.B, {pr.B.x, pr.A.y} });
 }
 
-//Построение треугольника
+//ГЏГ®Г±ГІГ°Г®ГҐГ­ГЁГҐ ГІГ°ГҐГіГЈГ®Г«ГјГ­ГЁГЄГ 
 void tr_pst(treugolnik KLM)
 {
 	otr_pst({ KLM.K, KLM.L });
@@ -203,7 +203,7 @@ void tr_pst(treugolnik KLM)
 	otr_pst({ KLM.M, KLM.K });
 }
 
-//Чтение из файла
+//Г—ГІГҐГ­ГЁГҐ ГЁГ§ ГґГ Г©Г«Г 
 void read(FILE* file)
 {
 	setlocale(LC_ALL, "");
@@ -215,29 +215,29 @@ void read(FILE* file)
 
 		if (sym)
 		{
-			if (strcmp(sym, "Точка") == 0)
+			if (strcmp(sym, "Г’Г®Г·ГЄГ ") == 0)
 			{
 				tchk_pst({ atoi(strtok(NULL, " ,:.-\n")), atoi(strtok(NULL, " ,:.-\n")) });
 			}
-			else if (strcmp(sym, "Отрезок") == 0)
+			else if (strcmp(sym, "ГЋГІГ°ГҐГ§Г®ГЄ") == 0)
 			{
 				otr_pst({ {atoi(strtok(NULL, " ,:.-\n")), atoi(strtok(NULL, " ,:.-\n"))}, {atoi(strtok(NULL, " ,:.-\n")), atoi(strtok(NULL, " ,:.-\n"))} });
 			}
-			else if (strcmp(sym, "Круг") == 0)
+			else if (strcmp(sym, "ГЉГ°ГіГЈ") == 0)
 			{
 				kr_pst({ atoi(strtok(NULL, " ,:.-\n")), {atoi(strtok(NULL, " ,:.-\n")), atoi(strtok(NULL, " ,:.-\n"))}, atoi(strtok(NULL, " ,:.-\n")) });
 			}
-			else if (strcmp(sym, "Треугольник") == 0)
+			else if (strcmp(sym, "Г’Г°ГҐГіГЈГ®Г«ГјГ­ГЁГЄ") == 0)
 			{
 				tr_pst({ {atoi(strtok(NULL, " ,:.-\n")), atoi(strtok(NULL, " ,:.-\n")) }, {atoi(strtok(NULL, " ,:.-\n")), atoi(strtok(NULL, " ,:.-\n")) }, {atoi(strtok(NULL, " ,:.-\n")), atoi(strtok(NULL, " ,:.-\n"))} });
 			}
-			else if (strcmp(sym, "Прямоугольник") == 0)
+			else if (strcmp(sym, "ГЏГ°ГїГ¬Г®ГіГЈГ®Г«ГјГ­ГЁГЄ") == 0)
 			{
 				pr_pst({ {atoi(strtok(NULL, " ,:.-\n")), atoi(strtok(NULL, " ,:.-\n")) }, {atoi(strtok(NULL, " ,:.-\n")), atoi(strtok(NULL, " ,:.-\n")) } });
 			}
 			else
 			{
-				printf("Неправильно заполнен файл");
+				printf("ГЌГҐГЇГ°Г ГўГЁГ«ГјГ­Г® Г§Г ГЇГ®Г«Г­ГҐГ­ ГґГ Г©Г«");
 				exit(3);
 			}
 		}
@@ -245,7 +245,7 @@ void read(FILE* file)
 	}
 }
 
-//Печать поля
+//ГЏГҐГ·Г ГІГј ГЇГ®Г«Гї
 void output()
 {
 	for (int i = 1; i <= Y; i++)
