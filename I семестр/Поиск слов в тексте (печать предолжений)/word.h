@@ -13,7 +13,7 @@ struct INDEX
 	char lines[1000];
 };
 
-FILE* input(FILE* file);//Запись слов в бинарный файл
-void output(FILE* file, FILE* final);//Чтение и поиск слов из бинарного файла
+FILE* input(FILE* file);
+void output(FILE* file, FILE* final);
 
 #endif WORDS

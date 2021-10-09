@@ -1,9 +1,9 @@
 #include"trans.h"
 
-int trans(char* file_name, char* file_final)//транспонирование
+int trans(char* file_name, char* file_final)
 {
-	int column = 0;//количество столбцов
-	int sym = 0;//обшее количество символов
+	int column = 0;
+	int sym = 0;
 	char LINE[100];
 	FILE* fp, * fp2;
 	fp = fopen(file_name, "r");
@@ -39,8 +39,8 @@ int trans(char* file_name, char* file_final)//транспонирование
 		memset(LINE, 0, 100);
 	}
 
-	int n = sym / column;//число строк
-	int m = column;//число столбцов
+	int n = sym / column;
+	int m = column;
 	fseek(fp, 0, SEEK_SET);
 
 	int** MTR = (int**)malloc(n * sizeof(int*));

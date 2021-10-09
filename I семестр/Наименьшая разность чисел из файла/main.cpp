@@ -9,15 +9,15 @@ void write(FILE* file)
 {
 	srand(time(NULL));
 	int num, sym, a, b;
-	printf("Введите количество чисел в файле: ");
+	printf("Enter count of number: ");
 	scanf("%d", &num);
-	printf("Введите пределы инициализации чисел: ");
+	printf("Enter min and max number: ");
 	scanf("%d", &a);
 	scanf("%d", &b);
 
 	if (b < a)
 	{
-		printf("Ошибка при инициализации пределов");
+		printf("Initialization error");
 		exit(2);
 	}
 
@@ -60,14 +60,14 @@ int main()
 	int index_1 = 0, index_2 = 1, difference, last;
 	char file_name[20];
 
-	printf("Введите название файла: ");
+	printf("Enter file name: ");
 	scanf("%s", file_name);
 
 	FILE* file = fopen(file_name, "w+");
 
 	if (!file)
 	{
-		printf("Ошибка при открытии файла %s", file_name);
+		printf("file open error %s", file_name);
 		exit(1);
 	}
 
@@ -94,7 +94,7 @@ int main()
 		}
 	}
 
-	printf("Наименьший модуль разности: | A[%d] - A[%d] | = %d", index_1, index_2, last);
+	printf("Smallest absolut value of difference: | A[%d] - A[%d] | = %d", index_1, index_2, last);
 	fclose(file);
 	return 0;
 }

@@ -8,7 +8,7 @@
 #include <string.h>
 #define X 95
 #define Y 50
-#define SYM 'Ô'
+#define SYM 'Ã”'
 static char POLE[Y][X];
 
 struct tochka

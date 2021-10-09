@@ -9,5 +9,5 @@ int main()
 {
 	setlocale(LC_ALL, "");
 	srand(time(NULL));
-	printf("Случайное число: %d", rand() % (MAX - MIN + 1) + MIN);
+    printf("Random number: %d", rand() % (MAX - MIN + 1) + MIN);
 }

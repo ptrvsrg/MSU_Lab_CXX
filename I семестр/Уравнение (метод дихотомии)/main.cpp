@@ -14,15 +14,15 @@ int main()
 	double a, b, c, d, e;
 	int i = 1;
 	cout << " log(x) + 1 = 0"  << endl << flush;
-	cout << " Введите отрезок [a, b]: "  << flush;
+	cout << " Enter segment [a, b]: "  << flush;
 	cin >> a >> b;
-	cout << " Введите точность: " << flush;
+	cout << " Enter accuracy: " << flush;
 	cin >> d;
-	cout << " Введите невязку: " << flush;
+	cout << " Enter discrepancy: " << flush;
 	cin >> e;
 	if (f(a)*f(b) > 0)
 	{
-		cout << " Выберите другой интервал [a, b]" << endl << flush;
+		cout << " Enter other segment [a, b]" << endl << flush;
 		return 1;
 	}
 	c = (a + b) / 2;
@@ -42,9 +42,9 @@ int main()
 	}
 	d = fabs(a - b);
 	e = fabs(f(b)-f(a));
-	cout << " Ответ: " << c << endl << flush;
-	cout << " Ширина интервала на последней итерации: " << d << endl << flush;
-	cout << " Невязка: " << e << endl << flush;
-	cout << " Количество итераций: " << i << endl << flush;
+	cout << " Answer: " << c << endl << flush;
+	cout << " Segment size at last iteration: " << d << endl << flush;
+	cout << " Discrepancy: " << e << endl << flush;
+	cout << " Count of iterations: " << i << endl << flush;
 	return 0;
 }

@@ -7,21 +7,21 @@ int main()
 {
 	setlocale(LC_ALL, "rus");
 	srand(time(NULL));
-	int answer = rand() % 1000000000000000001;
+	int answer = rand() % 101;
 	int user_answer = 0;
-	cout << "ИГРА ''УГАДАЙ ЧИСЛО''" << endl;
+	cout << "Game \"Guess the number\"" << endl;
 	while (user_answer != answer)
 	{
-		cout << "Введите свой ответ: ";
+		cout << "Enter answer: ";
 		cin >> user_answer;
 		if (user_answer < answer)
-			cout << "  БОЛЬШЕ" << endl;
+			cout << "  more" << endl;
 		else
 		{
 			if (user_answer > answer)
-				cout << "  МЕНЬШЕ" << endl;
+				cout << "  smaller" << endl;
 			else
-				cout << "  ПРАВИЛЬНЫЙ ОТВЕТ!!!";
+				cout << "  Right answer!!!";
 		}
 	}
 	return 0;

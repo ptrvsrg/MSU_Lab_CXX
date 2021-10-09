@@ -12,8 +12,7 @@ int main()
 
 	try
 	{
-		cout << "Используйте следующие операнды при вводе чисел:\n\tДля 10 СС - d...\n\tДля 8 CC - o...\n\n";
-		cout << "Введите r1: " << flush;
+		cout << "Enter r1: " << flush;
 		pr = getche();
 		if (pr == 'd')
 			cin >> dec >> r1;
@@ -22,15 +21,15 @@ int main()
 			cin >> oct >> r1;
 
 			if (!r1)
-				throw "1 - неправильно введён r1!";
+				throw "Wrong r1!";
 		}
 		else
-			throw "1 - неправильно введён r1!";
+			throw "Wrong r1!";
 
-		cout << "Введите op: " << flush;
+		cout << "Enter op: " << flush;
 		cin >> op;
 
-		cout << "Введите r2: " << flush;
+		cout << "Enter r2: " << flush;
 		pr = getche();
 		if (pr == 'd')
 			cin >> dec >> r2;
@@ -39,10 +38,10 @@ int main()
 			cin >> oct >> r2;
 
 			if (!r2)
-				throw "2 - неправильно введён r2!";
+				throw "Wrong r2!";
 		}
 		else
-			throw "2 - неправильно введён r2!";
+			throw "Wrong r2!";
 
 		switch (op)
 		{
@@ -52,17 +51,17 @@ int main()
 		case'/':
 			if (r2 == 0)
 			{
-				throw "3 - деление на ноль!";
+				throw "Divide by zero";
 			}
 			r3 = r1 / r2;
 			break;
 		default:
-			throw "4 - неправильно введён арифметический знак!";
+			throw "Wrong operator";
 		}
 	}
 	catch (const char* x)
 	{
-		cerr << "\nОшибка №" << x << endl;
+		cerr << x << endl;
 		exit(atoi(x));
 	}
 

@@ -12,14 +12,14 @@ int main()
 	int A[W];
 	srand(time(NULL));
 
-	cout << endl << "Исходный массив: " << flush;
+	cout << endl << "Initial array: " << flush;
 	for (int i = 0; i < W; i++)
 	{
 		A[i] = rand() / 327;
 		cout << A[i] << ", " << flush;
 	}
 
-	cout << endl << "Конечный массив: " << flush;
+	cout << endl << "Final array: " << flush;
 	int j = 0;
 LABEL:
 	A[j] = 0;

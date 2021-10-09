@@ -1,6 +1,5 @@
 #include "word.h"
 
-//Запись слов в бинарный файл
 FILE* input(FILE* file)
 {
 	setlocale(LC_ALL, "");
@@ -17,7 +16,7 @@ FILE* input(FILE* file)
 	
 	if (!final)
 	{
-		printf("Ошибка при открытии %s", file_final);
+		printf("file open error %s", file_final);
 		exit(1);
 	}
 
@@ -56,7 +55,7 @@ FILE* input(FILE* file)
 	return final;
 }
 
-//Чтение и поиск слов из бинарного файла
+
 void output(FILE* file, FILE* final)
 {
 	SetConsoleCP(1251);
@@ -66,7 +65,7 @@ void output(FILE* file, FILE* final)
 	char slovo[20], last[1000];
 	memset(last, 0, 1000);
 
-	printf("Введите нужное слово: ");
+	printf("Enter word: ");
 	scanf("%s", slovo);
 	printf("\n");
 
@@ -82,7 +81,7 @@ void output(FILE* file, FILE* final)
 
 	if (i == 0)
 	{
-		printf("Такого слова нет в данном тексте\n");
+		printf("no word found\n");
 	}
 
 	fclose(final);

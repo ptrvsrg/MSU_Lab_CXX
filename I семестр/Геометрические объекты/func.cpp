@@ -1,26 +1,23 @@
 #include "geom.h"
 
-//Îòêðûòèè ôàéëà äëÿ ÷òåíèÿ
+//Open file
 FILE* open_file()
 {
 	setlocale(LC_ALL, "");
-	char file_name[] = "1.txt";
-
-	/*printf("Ââåäèòå íàçâàíèå ôàéëà: ");
-	scanf("%s", file_name);*/
+	char file_name[100] = "1.txt";
 
 	FILE* file = fopen(file_name, "r");
 
 	if (!file)
 	{
-		printf("Îøèáêà ïðè îòêðûòèè ôàéëà %s", file_name);
+		printf("File error %s", file_name);
 		exit(2);
 	}
 
 	return file;
 }
 
-//Êîýôôèöèåíòû â óðàâíåíèè ïðÿìîé
+
 koefficient koef(otrezok AB)
 {
 	koefficient koef;
@@ -30,7 +27,7 @@ koefficient koef(otrezok AB)
 	return koef;
 }
 
-//Ñîçäàíèå ïîëÿ
+
 void input()
 {
 	for (int i = 0; i < Y; i++)
@@ -42,14 +39,14 @@ void input()
 	}
 }
 
-//Ïîñòðîåíèå òî÷êè
+
 void tchk_pst(tochka O)
 {
 	if (0 <= O.x < X && 0 <= O.y < Y)
 		POLE[O.y][O.x] = SYM;
 }
 
-//Ïîñòðîåíèå îòðåçêà
+
 void otr_pst(otrezok A1A2)
 {
 	int x = 0, y = 0;
@@ -78,7 +75,7 @@ void otr_pst(otrezok A1A2)
 	}
 }
 
-//Ïîñòðîåíèå êðóãà
+
 void kr_pst(krug okr)
 {
 	int xn = round(okr.O.x - sqrt(pow(okr.radius, 2) - pow(round(okr.O.y - okr.radius / sqrt(2)) - okr.O.y, 2)));
@@ -179,13 +176,13 @@ void kr_pst(krug okr)
 	}
 }
 
-//Ïîñòðîåíèå ïðÿìîóãîëüíèêà
+
 void pr_pst(pryamougolnik pr)
 {
 	setlocale(LC_ALL, "");
 	if (pr.A.x > pr.B.x || pr.A.y > pr.B.y)
 	{
-		printf("Ââåäèòå ïðàâèëëüíî ïàðàìåòðû ïðÿìîãóëüíèêà: x(A) < x(B) è y(A) < y(B)\n");
+		printf("Wrong parameters: x(A) < x(B) и y(A) < y(B)\n");
 		exit(1);
 	}
 
@@ -195,7 +192,7 @@ void pr_pst(pryamougolnik pr)
 	otr_pst({ pr.B, {pr.B.x, pr.A.y} });
 }
 
-//Ïîñòðîåíèå òðåóãîëüíèêà
+
 void tr_pst(treugolnik KLM)
 {
 	otr_pst({ KLM.K, KLM.L });
@@ -203,7 +200,7 @@ void tr_pst(treugolnik KLM)
 	otr_pst({ KLM.M, KLM.K });
 }
 
-//×òåíèå èç ôàéëà
+
 void read(FILE* file)
 {
 	setlocale(LC_ALL, "");
@@ -215,29 +212,29 @@ void read(FILE* file)
 
 		if (sym)
 		{
-			if (strcmp(sym, "Òî÷êà") == 0)
+			if (strcmp(sym, "Point") == 0)
 			{
 				tchk_pst({ atoi(strtok(NULL, " ,:.-\n")), atoi(strtok(NULL, " ,:.-\n")) });
 			}
-			else if (strcmp(sym, "Îòðåçîê") == 0)
+			else if (strcmp(sym, "Segment") == 0)
 			{
 				otr_pst({ {atoi(strtok(NULL, " ,:.-\n")), atoi(strtok(NULL, " ,:.-\n"))}, {atoi(strtok(NULL, " ,:.-\n")), atoi(strtok(NULL, " ,:.-\n"))} });
 			}
-			else if (strcmp(sym, "Êðóã") == 0)
+			else if (strcmp(sym, "Circle") == 0)
 			{
 				kr_pst({ atoi(strtok(NULL, " ,:.-\n")), {atoi(strtok(NULL, " ,:.-\n")), atoi(strtok(NULL, " ,:.-\n"))}, atoi(strtok(NULL, " ,:.-\n")) });
 			}
-			else if (strcmp(sym, "Òðåóãîëüíèê") == 0)
+			else if (strcmp(sym, "Triangle") == 0)
 			{
 				tr_pst({ {atoi(strtok(NULL, " ,:.-\n")), atoi(strtok(NULL, " ,:.-\n")) }, {atoi(strtok(NULL, " ,:.-\n")), atoi(strtok(NULL, " ,:.-\n")) }, {atoi(strtok(NULL, " ,:.-\n")), atoi(strtok(NULL, " ,:.-\n"))} });
 			}
-			else if (strcmp(sym, "Ïðÿìîóãîëüíèê") == 0)
+			else if (strcmp(sym, "Rectangle") == 0)
 			{
 				pr_pst({ {atoi(strtok(NULL, " ,:.-\n")), atoi(strtok(NULL, " ,:.-\n")) }, {atoi(strtok(NULL, " ,:.-\n")), atoi(strtok(NULL, " ,:.-\n")) } });
 			}
 			else
 			{
-				printf("Íåïðàâèëüíî çàïîëíåí ôàéë");
+				printf("Wrong file");
 				exit(3);
 			}
 		}
@@ -245,7 +242,7 @@ void read(FILE* file)
 	}
 }
 
-//Ïå÷àòü ïîëÿ
+
 void output()
 {
 	for (int i = 1; i <= Y; i++)

@@ -1,6 +1,6 @@
 #include "matrix.h"
 
-//Нахождение количества столбцов
+
 int fcolumn(FILE* file)
 {
 	int column = 0;
@@ -19,7 +19,7 @@ int fcolumn(FILE* file)
 	return column;
 }
 
-//Нахождение количества строк
+
 int frow(FILE* file)
 {
 	int row = 0, sym = 0, pr1 = 0, pr2 = 0, column = fcolumn(file);
@@ -42,7 +42,7 @@ int frow(FILE* file)
 
 		if (pr2 != 0 && pr1 != pr2)
 		{
-			printf("Неверно записаны матрицы в файлах!");
+			printf("Wrong file");
 			exit(1);
 		}
 
@@ -55,7 +55,7 @@ int frow(FILE* file)
 	return row;
 }
 
-//Выделение памяти
+
 int** memory(int row, int column)
 {
 	int** MTR;
@@ -67,7 +67,7 @@ int** memory(int row, int column)
 	return MTR;
 }
 
-//Очистка памяти
+
 void clear(int row, int** MTR)
 {
 	for (int i = 0; i < row; i++)
@@ -77,7 +77,7 @@ void clear(int row, int** MTR)
 	free(MTR);
 }
 
-//Считывание матрицы
+
 int** read(int row, int column, int** MTR, FILE* file)
 {
 	for (int i = 0; i < row; i++)
@@ -91,7 +91,7 @@ int** read(int row, int column, int** MTR, FILE* file)
 	return MTR;
 }
 
-//Транспонирование
+
 matrix transposition(FILE* file)
 {
 	matrix M;
@@ -112,7 +112,7 @@ matrix transposition(FILE* file)
 	return M;
 }
 
-//Умножение на коэффициент
+
 matrix multiplication_number(int coefficient, FILE* file)
 {
 	matrix M;
@@ -132,7 +132,7 @@ matrix multiplication_number(int coefficient, FILE* file)
 	return M;
 }
 
-//Сложение матриц
+
 matrix addition(FILE* file_1, FILE* file_2)
 {
 	matrix M;
@@ -187,7 +187,7 @@ matrix addition(FILE* file_1, FILE* file_2)
 	return M;
 }
 
-//Умножение матриц
+
 matrix multiplication_matrix(FILE* file_1, FILE* file_2)
 {
 	matrix M;
@@ -197,7 +197,7 @@ matrix multiplication_matrix(FILE* file_1, FILE* file_2)
 
 	if (row_2 != column_1)
 	{
-		printf("Такие матрицы нельзя перемножить, так как количество столбцов первой матрицы не равно количеству строк второй матрицы.\n");
+		printf("Wrong matrix\n");
 		exit(1);
 	}
 
@@ -222,7 +222,7 @@ matrix multiplication_matrix(FILE* file_1, FILE* file_2)
 	return M;
 }
 
-//Hахождение определителя
+
 int determinant(FILE* file)
 {
 	int l, d, sum11 = 1, sum12 = 0, sum21 = 1, sum22 = 0, row = frow(file), column = fcolumn(file);
@@ -230,7 +230,7 @@ int determinant(FILE* file)
 
 	if (row != column)
 	{
-		printf("Невозможно найти определитель неквадратной матрицы!!!");
+		printf("Non-square matrix");
 		exit(1);
 	}
 
@@ -250,7 +250,7 @@ int determinant(FILE* file)
 	return d;
 }
 
-//Вывод матрицы на экран
+
 void print_matrix(FILE* final, matrix M)
 {
 	for (int i = 0; i < M.row; i++)

@@ -7,7 +7,7 @@ int main()
 	int* A;
 	int max = 0, iter = 0, a;;
 	srand(time(NULL));
-	cout << "Введите размерность массива: ";
+	cout << "Enter array size: ";
 	cin >> W;
 
 	A = (int*)malloc(W * sizeof(int));

@@ -6,13 +6,13 @@ int main()
 	char file_name[100];
 	int counter;
 
-	printf("Введите название файла: ");
+	printf("Enter file name: ");
 	scanf("%s", file_name);
 
 	FILE* file = fopen(file_name, "w");
 
 	counter = count(file);
 
-	printf("\nКоличество чисел, составленных из уникальных цифр на промежутке от %d до %d: %d\n", A, B, counter);
+	printf("\nCount of numbers from segment [ %d ; %d] : %d\n", A, B, counter);
 	return 0;
 }

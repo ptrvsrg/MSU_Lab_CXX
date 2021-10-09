@@ -1,5 +1,5 @@
-//Петров Сергей, 107 группа
-//Семинар 8, задача 12
+//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, 107 пїЅпїЅпїЅпїЅпїЅпїЅ
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 8, пїЅпїЅпїЅпїЅпїЅпїЅ 12
 #include "word.h"
 
 int main()
@@ -8,14 +8,14 @@ int main()
 	SetConsoleOutputCP(1251);
 	char file_begin[100];
 	
-	printf("Введите название текстового файла: ");
+	printf("Enter file name: ");
 	scanf("%s", file_begin);
 
 	FILE* file = fopen(file_begin, "r+");
 
 	if (!file)
 	{
-		printf("Ошибка при открытии %s", file_begin);
+		printf("file open error %s", file_begin);
 		exit(1);
 	}
 

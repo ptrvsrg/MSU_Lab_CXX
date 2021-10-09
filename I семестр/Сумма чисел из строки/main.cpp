@@ -36,21 +36,21 @@ int main()
 	char file_final[100];
 	int sum = 0;
 
-	printf("Введите название 1 файла: ");
+	printf("Enter 1 file name: ");
 	scanf("%s", file_name);
-	printf("Введите название 2 файла: ");
+	printf("Enter 2 file name: ");
 	scanf("%s", file_final);
 
 	FILE* fp = fopen(file_name, "r");
 	FILE* final = fopen(file_final, "w");
 	if (!fp) 
 	{
-		printf("Ошибка при открытии %s", file_name);
+		printf("file open error %s", file_name);
 		exit(1);
 	}
 	if (!final) 
 	{
-		printf("Ошибка при открытии %s", file_final);
+		printf("file open error %s", file_final);
 		exit(2);
 	}
 	int cnt = read_int_numbers(fp, true, NULL);

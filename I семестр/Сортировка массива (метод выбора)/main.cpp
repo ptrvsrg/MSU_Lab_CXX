@@ -9,7 +9,7 @@ using namespace std;
 
 int main()
 {
-	setlocale(LC_ALL, "Russian");
+	setlocale(LC_ALL, "rus");
 	int i, j, m, n;
 	double A[W], a;
 	m = 0;
@@ -21,7 +21,7 @@ int main()
 		A[i] = rand()%11;
 	}
 
-	cout << "Исходный массив:  " << flush;
+	cout << "Initial array:  " << flush;
 
 	for (i = 0; i < W; i++)
 	{
@@ -41,18 +41,14 @@ int main()
 				m++;
 			}
 		}
-
-		/*cout<<endl<<endl<<"Промежуточный массив:  "<<flush;
-			for(i=0; i<W; i++)
-			{cout<<A[i]<<"; "<<flush;}*/
 	}
-	cout << endl << endl << "Конечный массив:  " << flush;
+	cout << endl << endl << "Final array:  " << flush;
 
 	for (i = 0; i < W; i++)
 	{
 		cout << A[i] << "; " << flush;
 	}
-	cout << endl << endl << "Количество перестановок: " << m << endl << flush;
-	cout << "Количество сравнений: " << n << endl << flush;
+	cout << endl << endl << "Count of permutatinons: " << m << endl << flush;
+	cout << "Count of comparisons: " << n << endl << flush;
 	return 0;
 }
