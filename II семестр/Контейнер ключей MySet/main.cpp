@@ -86,7 +86,7 @@ public:
 		}
 		catch (int x)
 		{
-			cerr << "Невозможно инициализировать объект вектором { " << temp[0];
+			cerr << "Initialization error { " << temp[0];
 			for (int i = 1; i < temp.size(); i++)
 				cerr << ", " << temp[i];
 			cerr << " } !";
@@ -138,7 +138,7 @@ public:
 		}
 		catch (int x)
 		{
-			cerr << "Нельзя добавить в контейнер ключей элемент " << temp << " !";
+			cerr << "Cannot add element " << temp << " !";
 			exit(0);
 		}
 	}
@@ -179,10 +179,10 @@ int main()
 	}
 	catch (error_initialization1 x)
 	{
-		cerr << "Невозможно инициализировать объект значением " << x.i << '!';
+		cerr << "Initialization error " << x.i << '!';
 	}
 	catch (error_non_existence x)
 	{
-		cerr << "Нет элемента с индексом " << x.i << '!';
+		cerr << "Non-existence error " << x.i << '!';
 	}
 }

@@ -93,36 +93,36 @@ void main()
 
 	try
 	{
-		cout << "Введите необходимые параметры:" << endl;
-		cout << "\tВведите координату Х левой стенки стакана: ";
+		cout << "Enter parameters:" << endl;
+		cout << "\tEnter x1: ";
 		cin >> X1;
 
-		cout << "\tВведите координату Х правой стенки стакана: ";
+		cout << "\tEnter x2: ";
 		cin >> X2;
 		if (X1 > X2)
 			throw error_wrong_glass_parameters(X1, X2);
 
-		cout << "\tВведите координату У верхней границы стакана, считая координату дна равной 0: ";
+		cout << "\tEnter y: ";
 		cin >> Y1;
 
-		cout << "\tВведите начальную координату по Х: ";
+		cout << "\tEnter x0: ";
 		cin >> X0;
 
-		cout << "\tВведите начальную координату по Y: ";
+		cout << "\tEnter y0: ";
 		cin >> Y0;
 		if (X0 > X2 || X0 < X1 || Y1 < Y0)
 			throw error_wrong_initial_parameters(X0, Y0);
 
-		cout << "\tВведите начальную скорость по Х: ";
+		cout << "\tEnter ux: ";
 		cin >> Ux;
 
-		cout << "\tВведите начальную скорость по Y: ";
+		cout << "\tEnter uy: ";
 		cin >> Uy;
 
-		cout << "\tВведите время проведения эксперимента: ";
+		cout << "\tEnter T: ";
 		cin >> T;
 
-		cout << "\tВведите разбиение временного промежутка: ";
+		cout << "\tEnter dt: ";
 		cin >> dt;
 		if (dt < 1.0E-5)
 			throw error_dt(dt);
@@ -146,14 +146,14 @@ void main()
 	}
 	catch (error_dt x)
 	{
-		cerr << "Введённое значение разбиения временного промежутка dt = " << x.num << " слишком мало!" << endl;
+		cerr << "dt = " << x.num << " too little!" << endl;
 	}
 	catch (error_wrong_glass_parameters x)
 	{
-		cerr << "Введённое значение x1 = " << x.mx1 << " должно быть меньше значения х2 = " << x.mx2 << endl;
+		cerr << "Wrong statement" << x.mx1 << " < " << x.mx2 << endl;
 	}
 	catch (error_wrong_initial_parameters x)
 	{
-		cerr << "При начальной точке (  " << x.mx0 << "; " << x.my0 << " ) шарик будет находиться вне стакана!" << endl;
+		cerr << "Wrong initial parameters (  " << x.mx0 << "; " << x.my0 << " )" << endl;
 	}
 }

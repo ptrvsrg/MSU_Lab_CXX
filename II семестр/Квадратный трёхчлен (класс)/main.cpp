@@ -1,5 +1,3 @@
-//Петров Сергей
-//3 семинар, 16 задача
 #include <iostream>
 #include <cmath>
 
@@ -23,15 +21,13 @@ struct error_nonexistence
 	}
 };
 
-//////////////////////////////////////////////////////
-
 class Numbers
 {
 protected:
 	double* mas;
 	unsigned int dim;
 public:
-	Numbers(int N = 0) : mas(nullptr), dim(0) //Конструктор
+	Numbers(int N = 0) : mas(nullptr), dim(0)
 	{
 		if (N < 0)
 			throw error_initialization(N);
@@ -42,7 +38,7 @@ public:
 		}
 	}
 
-	Numbers(const Numbers& temp): mas(nullptr), dim(0)//Конструктор копирования
+	Numbers(const Numbers& temp): mas(nullptr), dim(0)
 	{
 		if (temp.dim > 0)
 		{
@@ -56,21 +52,19 @@ public:
 		}
 	}
 
-	~Numbers() //Деструктор
+	~Numbers()
 	{
 		delete[] mas;
 		dim = 0;
 	}
 };
 
-//////////////////////////////////////////////////////
-
 class Trinomial: public Numbers
 {
 public:
-	Trinomial (): Numbers(3) {} //Конструктор
+	Trinomial (): Numbers(3) {}
 
-	Trinomial(const Trinomial& temp) : Numbers(temp) {} // Конструктор копирования
+	Trinomial(const Trinomial& temp) : Numbers(temp) {}
 
 	double der(double x = 1) const
 	{
@@ -129,7 +123,7 @@ public:
 		return *this;
 	}
 
-	double operator*= (const Trinomial& A) const //Скалярное умножение
+	double operator*= (const Trinomial& A) const
 	{
 		return der(-1) * A.der(-1) + der(0) * A.der(0) + der(1) * A.der(1);
 	}
@@ -138,9 +132,7 @@ public:
 	friend istream& operator>> (istream& is, Trinomial& r);
 };
 
-//////////////////////////////////////////////////////
-
-ostream& operator<< (ostream& os, const Trinomial& K) //Вывод коэффициентов
+ostream& operator<< (ostream& os, const Trinomial& K)
 {
 	for (int i = 0; i < K.dim; i++)
 	{
@@ -150,10 +142,10 @@ ostream& operator<< (ostream& os, const Trinomial& K) //Вывод коэффициентов
 	return os;
 }
 
-istream& operator>> (istream& is, Trinomial& K) //Ввод коэффициентов
+istream& operator>> (istream& is, Trinomial& K)
 {
 	double nx;
-	cout << "Введите коэффициенты трёхчлена: ";
+	cout << "Enter trinomial koefficient: ";
 	for (int i = 0; i < K.dim; i++)
 	{
 		is >> nx;
@@ -161,8 +153,6 @@ istream& operator>> (istream& is, Trinomial& K) //Ввод коэффициентов
 	}
 	return is;
 }
-
-//////////////////////////////////////////////////////
 
 int main()
 {
@@ -180,15 +170,14 @@ int main()
 		cout << B << endl;
 		B *= A;
 		cout << B << endl;
-		cout << A * B << endl;
 	}
 	catch(error_initialization x)
 	{ 
-		cerr << "Нельзя инициализировать объект типа Numbers значением " << x.n << endl;
+		cerr << "initialization error" << x.n << endl;
 	}
 	catch (error_nonexistence x)
 	{
-		cerr << "Не существует элемента массива с индексом " << x.m_i << endl;
+		cerr << "Non-existence error" << x.m_i << endl;
 	}
 
 	return 0;

@@ -113,20 +113,20 @@ int main()
 	Vector r1(1, 2), r2, r3;
 	double k;
 	char op;
-	cout << "������� ������ r1\n" << flush;
+	cout << "Enter r1\n" << flush;
 	cin >> r1;
-	cout << "������� �������������� ���� op\n" << flush;
+	cout << "Enter op\n" << flush;
 	cin >> op;
 
 	if (op == '+' || op == '-')
 	{
-		cout << "������� ������ r2\n" << flush;
+		cout << "Enter r2\n" << flush;
 		cin >> r2;
 	}
 	
 	if (op == '*' || op == '/')
 	{
-		cout << "������� ����� k\n" << flush;
+		cout << "Enter k\n" << flush;
 		cin >> k;
 	}
 	try
@@ -135,28 +135,28 @@ int main()
 		{
 		case'+':
 			r3 = r1 + r2;
-			cout << "   �����: " << r1 << ' ' << op << ' ' << r2 << " = " << r3 << endl << flush;
+			cout << "   Answer: " << r1 << ' ' << op << ' ' << r2 << " = " << r3 << endl << flush;
 			break;
 		case'-':
 			r3 = r1 - r2;
-			cout << "   �����: " << r1 << ' ' << op << ' ' << r2 << " = " << r3 << endl << flush;
+			cout << "   Answer: " << r1 << ' ' << op << ' ' << r2 << " = " << r3 << endl << flush;
 			break;
 		case'*':
 			r3 = r1 * k;
-			cout << "   �����: " << r1 << ' ' << op << ' ' << k << " = " << r3 << endl << flush;
+			cout << "   Answer: " << r1 << ' ' << op << ' ' << k << " = " << r3 << endl << flush;
 			break;
 		case'/':
 			r3 = r1 / k;
-			cout << "   �����: " << r1 << ' ' << op << ' ' << k << " = " << r3 << endl << flush;
+			cout << "   Answer: " << r1 << ' ' << op << ' ' << k << " = " << r3 << endl << flush;
 			break;
 		default:
-			cout << "������ �1 - ������������ �������������� ����!\n" << flush;
+			cout << "Wrong operator\n" << flush;
 			return 1;
 		}
 	}
 	catch (int x)
 	{
-		cout << "\n������ �" << x << " - ������� �� ����!!!\n\n";
+		cout << "Divide by zero\n";
 	}
 
 	return 0;

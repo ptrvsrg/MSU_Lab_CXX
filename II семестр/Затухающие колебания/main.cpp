@@ -1,5 +1,3 @@
-//Петров Сергей
-//Семинар 4, задача 19
 #include <iostream>
 #include <Windows.h>
 #include "resource.h"
@@ -48,27 +46,27 @@ void harmonic_oscillation(double& L0, double& w, double& f0, double& dt, double&
 {
     double k, m, L, U;
 
-    cout << "Введите необходимые параметры:" << endl;
-    cout << "\tВведите массу шарика: ";
+    cout << "Enter parameters:" << endl;
+    cout << "\tEnter m: ";
     cin >> m;
     if (m < 1.0E-10)
         throw error_m(m);
 
-    cout << "\tВведите жесткость пружины: ";
+    cout << "\tEnter k: ";
     cin >> k;
    
-    w = sqrt(k / m);//Находим частоту колебаний
+    w = sqrt(k / m);//РќР°С…РѕРґРёРј С‡Р°СЃС‚РѕС‚Сѓ РєРѕР»РµР±Р°РЅРёР№
 
-    cout << "\tВведите начальное смещение: ";
+    cout << "\tEnter x0: ";
     cin >> L;
-    cout << "\tВведите начальную скорость: ";
+    cout << "\tEnter V0: ";
     cin >> U;
-    f0 = atan(U / ( L * w)); // Находим разность фаз
-    L0 = L / cos(f0); //Находим амплитуду смещения
+    f0 = atan(U / ( L * w)); // РќР°С…РѕРґРёРј СЂР°Р·РЅРѕСЃС‚СЊ С„Р°Р·
+    L0 = L / cos(f0); //РќР°С…РѕРґРёРј Р°РјРїР»РёС‚СѓРґСѓ СЃРјРµС‰РµРЅРёСЏ
 
-    cout << "\tВведите временной промежуток: ";
+    cout << "\tEnter [ t1 ; t2 ]: ";
     cin >> t1 >> t2;
-    cout << "\tВведите разбиение временного промежутка: ";
+    cout << "\tEnter dt: ";
     cin >> dt;
     if (dt < 1.0E-5)
         throw error_dt(dt);
@@ -87,31 +85,31 @@ void damped_oscillation(double& L0, double& w, double& z, double& f0, double& dt
 {
     double a, k, m, L, U;
 
-    cout << "Введите необходимые параметры:" << endl;
-    cout << "\tВведите массу шарика: ";
+    cout << "Enter parameters:" << endl;
+    cout << "\tEnter m: ";
     cin >> m;
     if (m < 1.0E-10)
         throw error_m(m);
 
-    cout << "\tВведите жесткость пружины: ";
+    cout << "\tEnter k: ";
     cin >> k;
-    cout << "\tВведите коэффициент сопротивления: ";
+    cout << "\tEnter a: ";
     cin >> a;
-    z = 0.5 * a / m;//Находим коэффициент затухания
-    if (sqrt(k / m) < z) //Апериодический режим
+    z = 0.5 * a / m;
+    if (sqrt(k / m) < z)
         throw error_no_oscillation(sqrt(k / m), z);
-    w = sqrt(k / m - pow(z, 2));//Находим частоту затухающих колебаний
+    w = sqrt(k / m - pow(z, 2));
 
-    cout << "\tВведите начальное смещение: ";
+    cout << "\tEnter x0: ";
     cin >> L;
-    cout << "\tВведите начальную скорость: ";
+    cout << "\tEnter V0: ";
     cin >> U;
-    f0 = atan((-z - U / L) / w); // Находим разность фаз
-    L0 = L / cos(f0); //Находим амплитуду смещения
+    f0 = atan((-z - U / L) / w);
+    L0 = L / cos(f0);
 
-    cout << "\tВведите временной промежуток: ";
+    cout << "\tEnter [ t1 ; t2 ]: ";
     cin >> t1 >> t2;
-    cout << "\tВведите разбиение временного промежутка: ";
+    cout << "\tEnter dt: ";
     cin >> dt;
     if (dt < 1.0E-5)
         throw error_dt(dt);
@@ -127,22 +125,22 @@ void damped_oscillation(double& L0, double& w, double& z, double& f0, double& dt
 
 void addition_of_co_directional_oscillation (double& L01, double& w1, double& f01, double& L02, double& w2, double& f02, double& dt, double& t1, double& t2)
 {
-    cout << "Введите необходимые параметры:" << endl;
-    cout << "\tВведите первую амплитуду: ";
+    cout << "Enter parameters:" << endl;
+    cout << "\tEnter L01: ";
     cin >> L01;
-    cout << "\tВведите первую частоту колебаний: ";
+    cout << "\tEnter w1: ";
     cin >> w1;
-    cout << "\tВведите первую разность фаз: ";
+    cout << "\tEnter f01: ";
     cin >> f01;
-    cout << "\tВведите вторую амплитуду: ";
+    cout << "\tEnter L02: ";
     cin >> L02;
-    cout << "\tВведите вторую частоту колебаний: ";
+    cout << "\tEnter w2: ";
     cin >> w2;
-    cout << "\tВведите вторую разность фаз: ";
+    cout << "\tEnter f02: ";
     cin >> f02;
-    cout << "\tВведите временной промежуток: ";
+    cout << "\tEnter [ t1 ; t2 ]: ";
     cin >> t1 >> t2;
-    cout << "\tВведите разбиение временного промежутка: ";
+    cout << "\tEnter dt: ";
     cin >> dt;
     if (dt < 1.0E-5)
         throw error_dt(dt);
@@ -257,14 +255,14 @@ int main()
     }
     catch (error_m x)
     {
-        cerr << "Введённое значение массы m = " << x.num << " слишком мало!" << endl;
+        cerr << "m = " << x.num << " too little!" << endl;
     }
     catch (error_dt x)
     {
-        cerr << "Введённое значение разбиения временного промежутка dt = " << x.num << " слишком мало!" << endl;
+        cerr << "dt = " << x.num << " too little!" << endl;
     }
     catch (error_no_oscillation x)
     {
-        cerr << "При данных величинах w = " << x.a << ", z = " << x.b << " будет апериодический режим затухания!" << endl;
+        cerr << "For given value w = " << x.a << ", z = " << x.b << " will be aperiodic mode!" << endl;
     }
 }

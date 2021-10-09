@@ -91,26 +91,26 @@ void main()
 	{
 		setlocale(LC_ALL, "");
 		double x01, x02, u01, u02, k, m1, m2, a, l1, l2;
-		cout << "¬ведите все необходимые данные: " << endl;
-		cout << "\t¬ведите величину начального отклонени€ 1 груза: ";
+		cout << "Enter parameters: " << endl;
+		cout << "\tEnter x01: ";
 		cin >> x01;
-		cout << "\t¬ведите величину начального отклонени€ 2 груза: ";
+		cout << "\tEnter x02: ";
 		cin >> x02;
-		cout << "\t¬ведите величину начальной скорости 1 груза: ";
+		cout << "\tEnter u01: ";
 		cin >> u01;
-		cout << "\t¬ведите величину начальной скорости 2 груза: ";
+		cout << "\tEnter u02: ";
 		cin >> u02;
-		cout << "\t¬ведите величину жЄсткости пружины: ";
+		cout << "\tEnter k: ";
 		cin >> k;
-		cout << "\t¬ведите величину массу 1 груза: ";
+		cout << "\tEnter m1: ";
 		cin >> m1;
-		cout << "\t¬ведите величину массу 2 груза: ";
+		cout << "\tEnter m2: ";
 		cin >> m2;
-		cout << "\t¬ведите величину длины 1 нити: ";
+		cout << "\tEnter l1: ";
 		cin >> l1;
-		cout << "\t¬ведите величину длины 2 нити: ";
+		cout << "\tEnter l2: ";
 		cin >> l2;
-		cout << "\t¬ведите величину рассто€ни€, на котором крепитс€ пружина: ";
+		cout << "\tEnter a: ";
 		cin >> a;
 
 		w1 = sqrt(g / l1);
@@ -138,9 +138,9 @@ void main()
 		else
 			A2 = (x01 - x02) / cos(f02);
 
-		cout << "\t¬ведите промежуток времени: ";
+		cout << "\tEnter [ t1 ; t2 ]: ";
 		cin >> t1 >> t2;
-		cout << "\t¬ведите величину разбиени€ времени: ";
+		cout << "\tEnter dt: ";
 		cin >> dt;
 
 		coordinate O;

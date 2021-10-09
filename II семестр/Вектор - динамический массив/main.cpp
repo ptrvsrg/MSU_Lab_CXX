@@ -1,5 +1,3 @@
-//Петров Сергей, 107 группа
-//2 семинар, 1 задача
 #include <iostream>
 #include <cmath>
 
@@ -10,23 +8,23 @@ class Vector
 private:
 	double x, y;
 public:
-	Vector(double nx = 0, double ny = 0) : x(nx), y(ny) //Конструктор
+	Vector(double nx = 0, double ny = 0) : x(nx), y(ny)
 	{}
 
-	Vector(const Vector& r) : x(r.x), y(r.y) //Конструктор копирования
+	Vector(const Vector& r) : x(r.x), y(r.y)
 	{}
 
-	~Vector() //Деструктор
+	~Vector()
 	{
 		x = y = 0;
 	}
 
-	double X() const //Получение координаты х
+	double X() const
 	{
 		return x;
 	}
 
-	double Y() const //Получение координаты у
+	double Y() const
 	{
 		return y;
 	}
@@ -52,7 +50,7 @@ private:
 	Vector* v;
 	unsigned int len;
 public:
-	VectorArray(int N = 0) : len(0) //Конструктор
+	VectorArray(int N = 0) : len(0)
 	{
 		if(N < 0)
 			throw 1;
@@ -67,7 +65,7 @@ public:
 		}
 	}
 
-	VectorArray(const VectorArray& temp) : len(temp.len) //Конструктор копирования
+	VectorArray(const VectorArray& temp) : len(temp.len)
 	{
 		Vector* q = new Vector[temp.len];
 
@@ -77,7 +75,7 @@ public:
 		v = q;
 	}
 	
-	int size() const //Получение размера массива
+	int size() const
 	{ 
 		return len; 
 	}
@@ -98,7 +96,7 @@ public:
 			return v[index];
 	}
 
-	VectorArray& insert(Vector r, int pos) //Добавление вектора в конец массива
+	VectorArray& insert(Vector r, int pos)
 	{
 		Vector* q;
 		q = new Vector[len + 1];
@@ -120,7 +118,7 @@ public:
 		return *this;
 	}
 
-	VectorArray& erase(int pos) //Удаление вектора из массива
+	VectorArray& erase(int pos)
 	{
 		if (pos >= len)
 			throw 2;
@@ -145,7 +143,7 @@ public:
 		}
 	}
 
-	VectorArray& merge(const VectorArray w) //Объединение 2 массивов
+	VectorArray& merge(const VectorArray w)
 	{
 		Vector* q;
 		q = new Vector[len + w.size()];
@@ -174,13 +172,13 @@ public:
 		return *this;
 	}
 
-	~VectorArray() //Деструктор
+	~VectorArray()
 	{
 		delete[] v; 
 	}
 };
 
-ostream& operator<< (ostream& os, const VectorArray& r) //Вывод массива
+ostream& operator<< (ostream& os, const VectorArray& r)
 {
 	for (int i = 0; i < r.size(); i++)
 	{
@@ -190,21 +188,21 @@ ostream& operator<< (ostream& os, const VectorArray& r) //Вывод массива
 	return os;
 }
 
-istream& operator>> (istream& is, VectorArray& r) //Ввод массива
+istream& operator>> (istream& is, VectorArray& r)
 {
 	double nx, ny;
 
 	if (r.size() == 0)
 	{
 		int i = 0, len;
-		cout << "Введите размер массива: ";
+		cout << "Enter array size: ";
 		cin >> len;
 		if (len < 0)
 			throw 3;
 
 		while (i < len)
 		{
-			cout << "Введите координаты вектора: ";
+			cout << "Enter vector coordinates: ";
 			is >> nx;
 			is >> ny;
 			r.insert(Vector(nx, ny), r.size());
@@ -216,7 +214,7 @@ istream& operator>> (istream& is, VectorArray& r) //Ввод массива
 	{
 		for (int i = 0; i < r.size(); i++)
 		{
-			cout << "Введите координаты вектора: ";
+			cout << "Enter vector coordinates: ";
 			is >> nx;
 			is >> ny;
 			r[i] = Vector(nx, ny);
@@ -246,7 +244,7 @@ int main()
 	}
 	catch (int x)
 	{
-		cerr << "Ошибка №" << x << endl;
+		cerr << "Error #" << x << endl;
 	}
 
 	return 0;

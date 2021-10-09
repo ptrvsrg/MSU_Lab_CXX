@@ -12,10 +12,6 @@
 
 using namespace std;
 
-
-//------------------------------------------------------------------------------------//
-//////////////////////////////--- Структуры для ошибок ---//////////////////////////////
-//------------------------------------------------------------------------------------//
 struct error_file_not_open
 {
 	string file_name;
@@ -57,10 +53,6 @@ struct error_insert
 	error_insert(int m_i, int m_j) : i(m_i), j(m_j) {}
 };
 
-
-//----------------------------------------------------------------------------//
-//////////////////////////////--- Класс матриц ---//////////////////////////////
-//----------------------------------------------------------------------------//
 class Matrix : public vector <double>
 {
 private:
@@ -69,7 +61,6 @@ private:
 
 public:
 
-	//////////////////////////////--- Конструкторы ---//////////////////////////////
 	Matrix(void): vector(0), row(0) {}
 
 
@@ -99,36 +90,26 @@ public:
 	Matrix(int n_row, vector <double> res) : vector(res), row(n_row)
 	{
 		if (res.size() % row != 0)
-			throw "Неправильные данные для создания матрицы!";
+			throw "Wrong matrix data";
 	}
 
-
-	//////////////////////////////--- Конструктор копирования ---//////////////////////////////
 	Matrix(const Matrix& temp) : row(temp.row), vector(temp) {}
 
-
-	//////////////////////////////--- Получение количества строк ---//////////////////////////////
 	int row1() const
 	{
 		return row;
 	}
 
-
-	//////////////////////////////--- Получение количества столбцов ---//////////////////////////////
 	int column() const
 	{
 		return size() / row;
 	}
 
-
-	//////////////////////////////--- Проверка квадратной матрицы ---//////////////////////////////
-	bool check_square()
+    bool check_square()
 	{
 		return row == column();
 	}
 
-
-	//////////////////////////////--- Проверка диагональной матрицы ---//////////////////////////////
 	bool check_diagonal()
 	{
 		bool control = true;
@@ -141,8 +122,6 @@ public:
 		return (control && check_square());
 	}
 
-
-	//////////////////////////////--- Проверка единичной матрицы ---//////////////////////////////
 	bool check_identity()
 	{
 		bool control = true;
@@ -155,8 +134,6 @@ public:
 		return (control && check_diagonal());
 	}
 
-
-	//////////////////////////////--- Проверка верхней треугольной матрицы ---//////////////////////////////
 	bool check_upper_triangular()
 	{
 		bool control = true;
@@ -169,8 +146,6 @@ public:
 		return control;
 	}
 
-
-	//////////////////////////////--- Проверка нижней треугольной матрицы ---//////////////////////////////
 	bool check_lower_triangular()
 	{
 		bool control = true;
@@ -183,15 +158,11 @@ public:
 		return control;
 	}
 
-
-	//////////////////////////////--- Проверка треугольной матрицы ---//////////////////////////////
 	bool check_triangular()
 	{
 		return (check_lower_triangular() || check_upper_triangular());
 	}
 
-
-	//////////////////////////////--- Оператор[] ---//////////////////////////////
 	vector <double>& operator [] (int index)
 	{
 		if (index < 0 || index >= row)
@@ -215,8 +186,6 @@ public:
 		}
 	}
 
-
-	//////////////////////////////--- Оператор + ---//////////////////////////////
 	Matrix operator+ (const Matrix& temp) const
 	{
 		int column_max = fmax(column(), temp.column()), row_max = fmax(row, temp.row);
@@ -243,8 +212,6 @@ public:
 		return res;
 	}
 
-
-	//////////////////////////////--- Оператор += ---//////////////////////////////
 	Matrix& operator+= (const Matrix& temp)
 	{
 		int column_max = fmax(column(), temp.column()), row_max = fmax(row, temp.row);
@@ -272,8 +239,6 @@ public:
 		return *this;
 	}
 
-
-	//////////////////////////////--- Оператор - ---//////////////////////////////
 	Matrix operator- (const Matrix& temp) const
 	{
 		int column_max = fmax(column(), temp.column()), row_max = fmax(row, temp.row);
@@ -299,8 +264,6 @@ public:
 		return res;
 	}
 
-
-	//////////////////////////////--- Оператор -= ---//////////////////////////////
 	Matrix& operator-= (const Matrix& temp)
 	{
 		int column_max = fmax(column(), temp.column()), row_max = fmax(row, temp.row);
@@ -328,8 +291,6 @@ public:
 		return *this;
 	}
 
-
-	//////////////////////////////--- Оператор * на число ---//////////////////////////////
 	Matrix operator* (double a) const
 	{
 		Matrix res(*this);
@@ -341,8 +302,6 @@ public:
 		return res;
 	}
 
-
-	//////////////////////////////--- Оператор *= на число ---//////////////////////////////
 	Matrix& operator* (double a)
 	{
 		for (int i = 0; i < row; i++)
@@ -352,8 +311,6 @@ public:
 		return *this;
 	}
 
-
-	//////////////////////////////--- Оператор / ---//////////////////////////////
 	Matrix operator/ (double a) const
 	{
 		Matrix res(*this);
@@ -365,8 +322,6 @@ public:
 		return res;
 	}
 
-
-	//////////////////////////////--- Оператор /= ---//////////////////////////////
 	Matrix& operator/= (double a)
 	{
 		for (int i = 0; i < row; i++)
@@ -376,8 +331,6 @@ public:
 		return *this;
 	}
 
-
-	//////////////////////////////--- Оператор * матриц ---//////////////////////////////
 	Matrix operator* (const Matrix& temp) const
 	{
 		if (temp.row != column())
@@ -403,8 +356,6 @@ public:
 		}
 	}
 
-
-	//////////////////////////////--- Оператор *= матриц ---//////////////////////////////
 	Matrix& operator*= (const Matrix& temp)
 	{
 		if (temp.row != column())
@@ -431,12 +382,10 @@ public:
 		}
 	}
 
-
-	//////////////////////////////--- Определитель матрицы ---//////////////////////////////
 	double determinant()
 	{
 		if (!check_square())
-			throw "Оператор нахождения определителя матрицы действует только с квадратными матрицами";
+			throw "Non-square matrix";
 		else
 		{
 			switch (row)
@@ -466,8 +415,6 @@ public:
 		}
 	}
 
-
-	//////////////////////////////--- Проверка на вырожденность ---//////////////////////////////
 	bool check_degeneracy()
 	{
 		if (check_square())
@@ -476,8 +423,6 @@ public:
 			return false;
 	}
 
-
-	//////////////////////////////--- Транспонирование матрицы ---//////////////////////////////
 	Matrix trans()
 	{
 		Matrix res(column(), row);
@@ -489,12 +434,10 @@ public:
 		return res;
 	}
 
-
-	//////////////////////////////--- След матрицы ---//////////////////////////////
 	double tr()
 	{
 		if (!check_square())
-			throw "Оператор нахождения следа матрицы действует только с квадратными матрицами";
+			throw "Non-square matrix";
 		else
 		{
 			double tr = 0;
@@ -505,14 +448,12 @@ public:
 		}
 	}
 
-
-	//////////////////////////////--- Обратная матрица ---//////////////////////////////
 	Matrix inverse()
 	{
 		if (!check_square())
-			throw "Оператор нахождения обратной матрицы действует только с квадратными матрицами";
+			throw "Non-square matrix";
 		else if(check_degeneracy())
-			throw "Оператор нахождения обратной матрицы действует только с невырожденными матрицами";
+			throw "Non-degeneracy matrix";
 		else
 		{
 			Matrix res(row, column()), mas(row-1, column() - 1);
@@ -544,8 +485,6 @@ public:
 		}
 	}
 
-
-	//////////////////////////////--- Вставка строки ---//////////////////////////////
 	void insert_row(int index, vector<double> row1)
 	{
 		if (row1.size() == column())
@@ -567,8 +506,6 @@ public:
 			throw error_insert(column(), row1.size());
 	}
 
-
-	//////////////////////////////--- Вставка столбца ---//////////////////////////////
 	void insert_column(int index, vector<double> column1)
 	{
 		if (column1.size() == row)
@@ -586,8 +523,6 @@ public:
 			throw error_insert(row, column1.size());
 	}
 
-
-	//////////////////////////////--- Удаление строки ---//////////////////////////////
 	void erase_row(int index)
 	{
 		if (index < 0)
@@ -604,8 +539,6 @@ public:
 		}
 	}
 
-
-	//////////////////////////////--- Удаление столбца ---//////////////////////////////
 	void erase_column(int index)
 	{
 		if (index < 0)
@@ -624,8 +557,6 @@ public:
 		}
 	}
 
-
-	//////////////////////////////--- Вставка строки в конец ---//////////////////////////////
 	void push_back_row(vector<double> row1)
 	{
 		if (row1.size() == column())
@@ -637,8 +568,6 @@ public:
 			throw error_insert(column(), row1.size());
 	}
 
-
-	//////////////////////////////--- Вставка столбца в конец ---//////////////////////////////
 	void push_back_column(vector<double> column1)
 	{
 		if (column1.size() == row)
@@ -650,16 +579,12 @@ public:
 			throw error_insert(row, column1.size());
 	}
 
-
-	//////////////////////////////--- Удаление строки в конец ---//////////////////////////////
 	void pop_back_row()
 	{
 		erase(end() - column(), end());
 		row--;
 	}
 
-
-	//////////////////////////////--- Удаление столбца в конец ---//////////////////////////////
 	void pop_back_column()
 	{
 		int c = column();
@@ -667,8 +592,6 @@ public:
 			erase(begin() + c * (i + 1) - 1);
 	}
 
-
-	//////////////////////////////--- Печать строки ---//////////////////////////////
 	void print_row(ostream& os, int index)
 	{
 		if (index < 0 || index >= row)
@@ -680,8 +603,6 @@ public:
 		}
 	}
 
-
-	//////////////////////////////--- Печать столбца ---//////////////////////////////
 	void print_column(ostream& os, int index)
 	{
 		if (index < 0 || index >= row)
@@ -693,8 +614,6 @@ public:
 		}
 	}
 
-
-	//////////////////////////////--- Получение массива элементов ---//////////////////////////////
 	vector<double> data1()
 	{
 		vector<double> a;
@@ -702,36 +621,26 @@ public:
 		return a;
 	}
 
-
-	//////////////////////////////--- Обмен матриц значениями ---//////////////////////////////
 	void swap1(Matrix& res)
 	{
 		swap(res);
 	}
 
-
-	//////////////////////////////--- Очистка матрицы ---//////////////////////////////
 	void clear1()
 	{
 		clear();
 		row = 0;
 	}
 	
-
-	//////////////////////////////--- Деструктор ---//////////////////////////////
 	~Matrix()
 	{
 		clear1();
 	}
 
-
-	//////////////////////////////--- Дружественные функции ---//////////////////////////////
 	friend ostream& operator << (ostream& os, const Matrix& temp);
 	friend istream& operator >> (istream& file_in, Matrix& res);
 };
 
-
-//////////////////////////////--- Поток вывода в консоль ---//////////////////////////////
 ostream& operator << (ostream& os, const Matrix& temp)
 {
 	for (int i = 0; i < temp.row; i++)
@@ -767,7 +676,7 @@ istream& operator >> (istream& is, Matrix& res)
 		if (n_column1 == 0)
 			break;
 		if (n_column2 != 0 && n_column1 != n_column2)
-			throw "Неверно записаны данные матрицы в файле!";
+			throw "Wrong format of file";
 		if (n_column1 != 0)
 			n_row++;
 
@@ -787,11 +696,6 @@ istream& operator >> (istream& is, Matrix& res)
 
 	return is;
 }
-
-
-//----------------------------------------------------------------------------//
-//////////////////////////////--- Функция main ---//////////////////////////////
-//----------------------------------------------------------------------------//
 
 int main()
 {
@@ -822,22 +726,22 @@ int main()
 	}
 	catch (error_initialization1 x)
 	{
-		cerr << "Нельзя инициализировать матрицу значениями ( " << x.r << "; " << x.c << " )" << endl;
+		cerr << "Initialization error ( " << x.r << "; " << x.c << " )" << endl;
 	}
 	catch (error_initialization2 x)
 	{
-		cerr << "Неправильная категория матрицы " << x.Category << endl;
+		cerr << "Initialization error " << x.Category << endl;
 	}
 	catch (error_multiplication x)
 	{
-		cerr << "Нельзя умножить матрицы, потому что количество строк первой " << x.r << " не равно количеству столбцов второй матрицы " << x.c << endl;
+		cerr << "Multiplication error " << x.r << " != " << x.c << endl;
 	}
 	catch (error_file_not_open x)
 	{
-		cerr << "Ошибка при открытии файла " << x.file_name << endl;
+		cerr << "File open error " << x.file_name << endl;
 	}
 	catch (error_non_existence x)
 	{
-		cerr << "Не существует  элемента с индексом " << x.i << endl;
+		cerr << "Non-existence " << x.i << endl;
 	}
 }

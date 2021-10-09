@@ -82,10 +82,10 @@ int main()
 	}
 	catch (error_file_not_open x)
 	{
-		cerr << "Error 1: Ошибка при открытии файла " << x.file_name << endl;
+		cerr << "File open error " << x.file_name << endl;
 	}
 	catch (error_wrong_format x)
 	{
-		cerr << "Error 2: Данные в файле " << x.file_name << " записаны в неправильном формате!!!" << endl;
+		cerr << "Wrong format of file error " << x.file_name << endl;
 	}
 }

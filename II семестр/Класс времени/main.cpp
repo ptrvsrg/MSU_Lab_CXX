@@ -3,11 +3,7 @@
 
 using namespace std;
 
-//--------------------------------------------------------------------------------//
-//////////////////////////////--- Структуры ошибок ---//////////////////////////////
-//--------------------------------------------------------------------------------//
-
-struct error_initialization // Ошибка инициализации
+struct error_initialization
 {
 	int i;
 
@@ -17,7 +13,7 @@ struct error_initialization // Ошибка инициализации
 	}
 };
 
-struct error_non_existence // Ошибка существования объекта
+struct error_non_existence
 {
 	int i;
 
@@ -27,22 +23,14 @@ struct error_non_existence // Ошибка существования объекта
 	}
 };
 
-//---------------------------------------------------------------------------------//
-//////////////////////////////--- Класс NumberArray ---//////////////////////////////
-//---------------------------------------------------------------------------------//
-
 class NumberArray
 {
 protected:
-
-	//////////////////////////////--- Параметры ---//////////////////////////////
 
 	double* massive;
 	int lenght;
 
 public:
-
-	//////////////////////////////--- Конструктор ---//////////////////////////////
 
 	NumberArray(int N = 0) : lenght(N)
 	{
@@ -54,8 +42,6 @@ public:
 		}
 	}
 
-	//////////////////////////////--- Конструктор копирования ---//////////////////////////////
-
 	NumberArray(const NumberArray& temp) : lenght(temp.lenght)
 	{
 		massive = new double[temp.lenght];
@@ -64,8 +50,6 @@ public:
 			massive[i] = temp.massive[i];
 	}
 
-	//////////////////////////////--- Деструктор ---//////////////////////////////
-
 	~NumberArray()
 	{
 		lenght = 0;
@@ -73,28 +57,15 @@ public:
 	}
 };
 
-//--------------------------------------------------------------------------//
-//////////////////////////////--- Класс Time ---//////////////////////////////
-//--------------------------------------------------------------------------//
-
 class Time
 {
 public:
 
-	//////////////////////////////--- Параметры ---//////////////////////////////
-
 	double hours, minutes, seconds;
-
-	//////////////////////////////--- Конструктор ---//////////////////////////////
 
 	Time(double nhours, double nminutes, double nseconds) : hours(nhours), minutes(nminutes), seconds(nseconds) {}
 
-	//////////////////////////////--- Конструктор копирования ---//////////////////////////////
-
 	Time(const Time& temp): hours(temp.hours), minutes(temp.minutes), seconds(temp.seconds) {}
-
-
-	//////////////////////////////--- Деструктор ---//////////////////////////////
 
 	~Time()
 	{
@@ -104,23 +75,13 @@ public:
 	}
 };
 
-//-------------------------------------------------------------------------------//
-//////////////////////////////--- Класс TimeArray ---//////////////////////////////
-//-------------------------------------------------------------------------------//
-
 class TimeArray : public NumberArray
 {
 public:
 
-	//////////////////////////////--- Конструктор ---//////////////////////////////
-
 	TimeArray (int N = 0): NumberArray(3*N) {}
 
-	//////////////////////////////--- Конструктор копирования ---//////////////////////////////
-
 	TimeArray(const TimeArray& temp) : NumberArray((const NumberArray&) temp) {}
-
-	//////////////////////////////--- Опреатор [] ---//////////////////////////////
 
 	Time& operator [] (int index)
 	{
@@ -144,8 +105,6 @@ public:
 		}
 	}
 
-	//////////////////////////////--- Оператор =  ---//////////////////////////////
-
 	TimeArray& operator=(const TimeArray& r)
 	{
 		delete[] massive;
@@ -158,8 +117,6 @@ public:
 
 		return *this;
 	}
-
-	//////////////////////////////--- Оператор +=  ---//////////////////////////////
 
 	TimeArray& operator+=(const TimeArray& r)
 	{
@@ -179,8 +136,6 @@ public:
 		return *this;
 	}
 
-	//////////////////////////////--- Оператор -=  ---//////////////////////////////
-
 	TimeArray& operator-=(const TimeArray& r)
 	{
 		TimeArray res(fmax(lenght, r.lenght)/3);
@@ -198,8 +153,6 @@ public:
 		*this = res;
 		return *this;
 	}
-
-	//////////////////////////////--- Функция для вставки объекта ---//////////////////////////////
 
 	TimeArray insert(Time t, int pos)
 	{
@@ -230,8 +183,6 @@ public:
 		}
 	}
 
-	//////////////////////////////--- Функция для удаления объекта ---//////////////////////////////
-
 	TimeArray erase(int pos)
 	{
 		if (0 > pos || pos >= lenght / 3)
@@ -256,13 +207,9 @@ public:
 		}
 	}
 
-	//////////////////////////////--- Дружественные функции ---//////////////////////////////
-
 	friend ostream& operator << (ostream& os, const TimeArray& res);
 	friend istream& operator >> (istream& is, TimeArray& res);
 };
-
-//////////////////////////////--- Оператор << (вывод)  ---//////////////////////////////
 
 ostream& operator << (ostream& os, const TimeArray& res)
 {
@@ -272,8 +219,6 @@ ostream& operator << (ostream& os, const TimeArray& res)
 	return os;
 }
 
-//////////////////////////////--- Оператор >> (ввод) ---//////////////////////////////
-
 istream& operator >> (istream& is, TimeArray& res)
 {
 	double nhours, nminutes, nseconds;
@@ -281,14 +226,14 @@ istream& operator >> (istream& is, TimeArray& res)
 	if (res.lenght == 0)
 	{
 		int i = 0, len;
-		cout << "Введите размер массива: ";
+		cout << "Enter array size: ";
 		cin >> len;
 		if (len < 0)
 			throw error_initialization(len);
 
 		while (i < len)
 		{
-			cout << "Введите время (часы, минуты, секунды): ";
+			cout << "Enter time (hours, minutes, seconds): ";
 			is >> nhours;
 			is >> nminutes;
 			is >> nseconds;
@@ -301,7 +246,7 @@ istream& operator >> (istream& is, TimeArray& res)
 	{
 		for (int i = 0; i < res.lenght/3; i++)
 		{
-			cout << "Введите время (часы, минуты, секунды): ";
+			cout << "Enter time (hours, minutes, seconds): ";
 			is >> res.massive[3*i];
 			is >> res.massive[3*i+1];
 			is >> res.massive[3*i+2];
@@ -310,10 +255,6 @@ istream& operator >> (istream& is, TimeArray& res)
 
 	return is;
 }
-
-//----------------------------------------------------------------------------//
-//////////////////////////////--- Функция main ---//////////////////////////////
-//----------------------------------------------------------------------------//
 
 int main()
 {
@@ -339,10 +280,10 @@ int main()
 	}
 	catch (error_initialization x)
 	{
-		cerr << "Error 1: Нельзя инициализировать объект значнием " << x.i << '!' << endl;
+		cerr << "Initialization error " << x.i << '!' << endl;
 	}
 	catch (error_non_existence x)
 	{
-		cerr << "Error 2: Объекта с индексом " << x.i << " не существует!" << endl;
+		cerr << "Non-existence error" << endl;
 	}
 }
